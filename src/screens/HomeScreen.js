@@ -25,8 +25,7 @@ class HomeScreen extends Component {
     if (!this.props.user.email) {
       const {navigation} = this.props;
       if (navigation) {
-        // TODO: - 
-        // navigation.navigate('Login');
+        navigation.navigate('Login');
       }
     }
   }
