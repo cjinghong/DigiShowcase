@@ -1,6 +1,5 @@
 
 const user = (state={}, action) => {
-	console.log(action.email);
 	switch(action.type) {
 		case 'LOGIN':
 			return {

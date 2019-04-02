@@ -3,12 +3,11 @@ import {
 	StyleSheet, 
 	Text, 
 	View,
-	TouchableOpacity,
 	TouchableWithoutFeedback,
 	Keyboard
 } from 'react-native';
-import Field from '../components/Field';
 import {connect} from 'react-redux';
+import Field from '../components/Field';
 import BigButton from '../components/BigButton';
 
 class LoginScreen extends Component {
@@ -49,6 +48,7 @@ class LoginScreen extends Component {
 						/>
 						<Field
 							title='Password'
+							secureTextEntry={true}
 							value={this.state.password}
 							onChange={(password) => {this.setState({password})}}
 						/>

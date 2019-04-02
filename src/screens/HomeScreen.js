@@ -39,7 +39,7 @@ class HomeScreen extends Component {
 
   render() {
     const modalTitle = 'Hello,\nYou are logged in as';
-    const email = 'jinghongchan@gmail.com'//this.props.user.email ? this.props.user.email : '';
+    const email = this.props.user.email ? this.props.user.email : '';
     return (
       <Menu navigation={this.props.navigation}>
         <View style={styles.container}>

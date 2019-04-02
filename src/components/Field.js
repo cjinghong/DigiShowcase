@@ -14,6 +14,7 @@ export default class Field extends Component {
 				<Text style={styles.title}>{this.props.title}</Text>
 				<View style={styles.textInputContainer}>
 					<TextInput
+						secureTextEntry={this.props.secureTextEntry ? this.props.secureTextEntry : false}
 						style={styles.textInput}
 						onChangeText={this.props.onChange}
 						value={this.props.value}

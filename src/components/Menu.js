@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   menuImage: {
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
   }
 });
