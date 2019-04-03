@@ -22,7 +22,12 @@ class LoginScreen extends Component {
 
 	onLoginPress = () => {
 		const {email, password} = this.state;
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		if (email.length === 0 || password.length === 0) {
+			alert('Email and password cannot be empty')
+			return
+		} else if (!re.test(email.toLowerCase())) {
+			alert('Must be a valid email')
 			return
 		}
 
