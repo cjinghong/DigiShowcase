@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 	title: {
 		color: 'white',
 		fontWeight: 'bold',
-		fontSize: 21
+		fontSize: 21,
 	},
 	textInputContainer: {
 		marginTop: 10,
@@ -41,8 +41,9 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 	},
 	textInput: {
-		padding: 10,
+		paddingLeft: 10,
+		paddingRight: 10,
 		fontSize: 21,
-		height: 40
+		height: 40,
 	}
 })
