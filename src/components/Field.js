@@ -35,14 +35,12 @@ const styles = StyleSheet.create({
 		fontSize: 21,
 	},
 	textInputContainer: {
-		marginTop: 10,
-		marginBottom: 10,
+		marginVertical: 10,
 		backgroundColor: '#EAEAEA',
 		borderRadius: 10,
 	},
 	textInput: {
-		paddingLeft: 10,
-		paddingRight: 10,
+		paddingHorizontal: 10,
 		fontSize: 21,
 		height: 40,
 	}
