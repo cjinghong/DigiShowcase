@@ -1,70 +1,10 @@
-import React, {Component} from 'react';
-import { 
-	StyleSheet, 
-	Text, 
-  View,
-  Modal,
-  TouchableHighlight,
-} from 'react-native';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, View } from 'react-native';
+import { connect } from 'react-redux';
 import Menu from '../components/Menu';
-import {connect} from 'react-redux';
 import BigButton from '../components/BigButton';
 import UserEmailModal from '../components/UserEmailModal';
-
-class HomeScreen extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      userEmailModalVisible: false
-    }
-  }
-
-  componentDidMount() {
-    // If user DOES not exist, show login screenn
-    if (!this.props.user.email) {
-      const {navigation} = this.props;
-      if (navigation) {
-        navigation.navigate('Login');
-      }
-    }
-  }
-
-  setUserEmailModalVisible = (visible) => {
-    this.setState({
-      userEmailModalVisible: visible
-    })
-  }
-
-  render() {
-    const modalTitle = 'Hello,\nYou are logged in as';
-    const email = this.props.user.email ? this.props.user.email : '';
-    return (
-      <Menu navigation={this.props.navigation}>
-        <View style={styles.container}>
-
-          <UserEmailModal
-            modalVisible={this.state.userEmailModalVisible}
-            title={modalTitle}
-            content={email}
-            setModalVisible={this.setUserEmailModalVisible}
-          />
-          <BigButton
-            onPress={() => {this.setUserEmailModalVisible(true)}}
-            title='Show User Email'
-          />
-        </View>
-      </Menu>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-	return {
-		user: state.user,
-	}
-}
-export default connect(mapStateToProps)(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -73,3 +13,74 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userEmailModalVisible: false,
+    };
+  }
+
+  componentDidMount() {
+    const { user, navigation } = this.props;
+    // If user DOES not exist, show login screenn
+    if (!user) {
+      if (navigation) {
+        navigation.navigate('Login');
+      }
+    }
+  }
+
+  setUserEmailModalVisible = (visible) => {
+    this.setState({
+      userEmailModalVisible: visible,
+    });
+  };
+
+  render() {
+    const { user, navigation } = this.props;
+    const { userEmailModalVisible } = this.state;
+
+    const modalTitle = 'Hello,\nYou are logged in as';
+    const email = user ? user.email : '';
+
+    return (
+      <Menu navigation={navigation}>
+        <View style={styles.container}>
+          <UserEmailModal
+            modalVisible={userEmailModalVisible}
+            title={modalTitle}
+            content={email}
+            setModalVisible={this.setUserEmailModalVisible}
+          />
+          <BigButton
+            onPress={() => {
+              this.setUserEmailModalVisible(true);
+            }}
+            title="Show User Email"
+          />
+        </View>
+      </Menu>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+HomeScreen.propTypes = {
+  user: PropTypes.shape({
+    email: PropTypes.string,
+  }),
+  navigation: PropTypes.shape({
+    openDrawer: PropTypes.func,
+  }).isRequired,
+};
+
+HomeScreen.defaultProps = {
+  user: null,
+};
+
+export default connect(mapStateToProps)(HomeScreen);
